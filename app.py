@@ -10,9 +10,14 @@ def index():
     return render_template('index.html')
 
 
-@app.route('/cadastro')
+@app.route('/cadastro', methods=['GET', 'POST'])
 def register():
-    print('processando requisição')
+    if request.method == 'GET':
+        print('processando requisição GET')
+
+    if request.method == 'POST':
+        print('processando requisição POST')
+
     pprint(vars(request))
 
     return render_template('form.html')
