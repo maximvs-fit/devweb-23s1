@@ -18,4 +18,9 @@ def get_register():
 def post_register():
     print('processando requisição POST')
     pprint(request.form)
-    return render_template('form.html')
+    name = request.form.get('nome')
+    telefone = request.form.get('tel')
+    accept_whatsapp = request.form.get('accept-whatsapp')
+    print('checkbox whatsapp', accept_whatsapp)
+    return render_template('confirmation.html', x=name, y=telefone, z=accept_whatsapp)
+

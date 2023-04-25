@@ -10,12 +10,15 @@
     <h1>Teste de envio de formulário</h1>
     <form method="POST">
       <label for="nome">Nome</label>
-      <input id="nome" name="nome" />
+      <input id="nome" name="nome" required />
       <br />
       <label>Telefone</label>
-      <input type="number" id="fone" name="tel" />
-
+      <input type="number" id="fone" name="tel" required />
       <br />
+      <input type="checkbox" id="whatsapp" name="accept-whatsapp">
+      <label for="whatsapp">Aceito receber comunicação por whatsapp</label>
+      <br />
+
       <button type="submit">Enviar</button>
     </form>
   </body>
