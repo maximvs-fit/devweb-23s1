@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block conteudo %}
+<h1>Login com GET</h1>
+<form action="/login-get">
+  <label for="login">Nome</label>
+  <input id="login" name="user" required />
+  <br />
+  <label for="senha">Senha</label>
+  <input type="password" id="senha" name="password" required />
+  <br />
+
+  <button type="reset">Limpar</button>
+  <button type="submit">Enviar</button>
+</form>
+{% endblock %}

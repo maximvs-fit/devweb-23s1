@@ -1,10 +1,11 @@
-from flask import render_template, request
+from flask import render_template, request, session
 from pprint import pprint
 from app import app
 
 
 @app.route('/')
 def index():
+    print('dados da sessão', vars(session))
     return render_template('index.html')
 
 
@@ -30,3 +31,26 @@ def confirm():
     }
 
     return render_template('confirmation.html', **dados)
+
+
+@app.route('/login-get')
+def login_get():
+    print(request.args)
+    usuario = request.args.get('user')
+    senha = request.args.get('password')
+    print('usuário', usuario)
+    print('senha', senha)
+    return render_template('login.html')
+
+
+@app.route('/login-post', methods=['GET', 'POST'])
+def login_post():
+    print(request.method)
+    if request.method.lower() == 'post':
+        print('args', request.args)
+        print('form', request.form)
+        usuario = request.form.get('user')
+        senha = request.form.get('password')
+        print('usuário', usuario)
+        print('senha', senha)
+    return render_template('login-post.html')
