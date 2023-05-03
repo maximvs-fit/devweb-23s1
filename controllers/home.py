@@ -31,32 +31,3 @@ def confirm():
     }
 
     return render_template('confirmation.html', **dados)
-
-
-@app.route('/login')
-def login_get():
-    return render_template('login.html')
-
-
-usuario1 = {'login': 'rafael', 'senha': 'asdf1234'}
-
-
-@app.route('/login', methods=['POST'])
-def login_post():
-    print('form', request.form)
-    usuario = request.form.get('user')
-    senha = request.form.get('password')
-
-    # validação do usuário aqui
-    if not usuario == usuario1['login']:
-        return "usuário não encontrado"
-
-    if not senha == usuario1['senha']:
-        return "senha incorreta"
-
-    return redirect(url_for('area_logada'))
-
-
-@app.route('/area-logada')
-def area_logada():
-    return render_template('area-logada.html')
