@@ -1,4 +1,4 @@
-from flask import render_template, request, session
+from flask import render_template, request, session, redirect, url_for
 from pprint import pprint
 from app import app
 
@@ -33,24 +33,30 @@ def confirm():
     return render_template('confirmation.html', **dados)
 
 
-@app.route('/login-get')
+@app.route('/login')
 def login_get():
-    print(request.args)
-    usuario = request.args.get('user')
-    senha = request.args.get('password')
-    print('usuário', usuario)
-    print('senha', senha)
     return render_template('login.html')
 
 
-@app.route('/login-post', methods=['GET', 'POST'])
+usuario1 = {'login': 'rafael', 'senha': 'asdf1234'}
+
+
+@app.route('/login', methods=['POST'])
 def login_post():
-    print(request.method)
-    if request.method.lower() == 'post':
-        print('args', request.args)
-        print('form', request.form)
-        usuario = request.form.get('user')
-        senha = request.form.get('password')
-        print('usuário', usuario)
-        print('senha', senha)
-    return render_template('login-post.html')
+    print('form', request.form)
+    usuario = request.form.get('user')
+    senha = request.form.get('password')
+
+    # validação do usuário aqui
+    if not usuario == usuario1['login']:
+        return "usuário não encontrado"
+
+    if not senha == usuario1['senha']:
+        return "senha incorreta"
+
+    return redirect(url_for('area_logada'))
+
+
+@app.route('/area-logada')
+def area_logada():
+    return render_template('area-logada.html')
