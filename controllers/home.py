@@ -1,10 +1,11 @@
-from flask import render_template, request
+from flask import render_template, request, session, redirect, url_for
 from pprint import pprint
 from app import app
 
 
 @app.route('/')
 def index():
+    print('dados da sessão', vars(session))
     return render_template('index.html')
 
 
