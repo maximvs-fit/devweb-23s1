@@ -38,7 +38,7 @@ def login_post():
     return resposta
 
 
-@app.route('logout')
+@app.route('/logout')
 def logout():
     id_sessao = request.cookies.get('session-id')
     usuario = session.pop(id_sessao, None)
